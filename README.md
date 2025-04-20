@@ -1,2 +1,2 @@
 # iagent
-IAgent is multi-agent library, not a framework. It aims to provide primitive to enable you build agent application, than locking you in a specific framework.
+IAgent is multi-agent library, not a framework. It aims to provide primitives to enable you build agent applications, than locking you in a specific framework.
