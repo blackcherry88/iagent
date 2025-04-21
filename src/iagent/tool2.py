@@ -1,6 +1,5 @@
 import inspect
 from typing import Any, Callable, Dict, Optional, Type
-
 from pydantic import BaseModel, ValidationError, create_model
 
 
