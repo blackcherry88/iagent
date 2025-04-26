@@ -1,6 +1,9 @@
+from typing import Any, Dict, List, Optional
+
 import pytest
-from typing import Optional, List, Dict, Any
-from iagent.tool.tool_spec import to_tool_spec, to_openai_tool_format, ToolSpec
+
+from iagent.tool.tool_spec import to_openai_tool_format, to_tool_spec
+
 
 def func_simple(a: int, b: str) -> None:
     """Simple function.
@@ -12,6 +15,7 @@ def func_simple(a: int, b: str) -> None:
     """
     pass
 
+
 def func_with_defaults(x: float = 1.5, y: bool = True) -> None:
     """Function with defaults.
 
@@ -20,6 +24,7 @@ def func_with_defaults(x: float = 1.5, y: bool = True) -> None:
         y: A boolean parameter.
     """
     pass
+
 
 def func_optional(opt: Optional[str] = None) -> None:
     """Function with optional parameter.
@@ -31,6 +36,7 @@ def func_optional(opt: Optional[str] = None) -> None:
     """
     pass
 
+
 def func_list_enum(color: str) -> None:
     """Function with enum.
 
@@ -38,6 +44,7 @@ def func_list_enum(color: str) -> None:
         color: Color name. One of {'red', 'green', 'blue'}.
     """
     pass
+
 
 def func_list_param(items: List[int]) -> None:
     """Function with list parameter.
@@ -47,6 +54,7 @@ def func_list_param(items: List[int]) -> None:
     """
     pass
 
+
 def func_dict_param(config: Dict[str, Any]) -> None:
     """Function with dict parameter.
 
@@ -55,8 +63,10 @@ def func_dict_param(config: Dict[str, Any]) -> None:
     """
     pass
 
+
 def func_no_docstring(a: int) -> None:
     pass
+
 
 @pytest.mark.parametrize(
     "func,expected_types,expected_required",
@@ -66,7 +76,7 @@ def func_no_docstring(a: int) -> None:
         (func_optional, {"opt": "anyOf"}, set()),
         (func_list_param, {"items": "array"}, {"items"}),
         (func_dict_param, {"config": "object"}, {"config"}),
-    ]
+    ],
 )
 def test_to_tool_spec_schema(func, expected_types, expected_required):
     tool_spec = to_tool_spec(func)
@@ -82,10 +92,12 @@ def test_to_tool_spec_schema(func, expected_types, expected_required):
     else:
         assert "required" not in schema or not schema["required"]
 
+
 def test_to_tool_spec_description_and_name():
     tool_spec = to_tool_spec(func_simple)
     assert tool_spec.name == "func_simple"
     assert "Simple function" in tool_spec.description
+
 
 def test_to_tool_spec_optional_param():
     tool_spec = to_tool_spec(func_optional)
@@ -94,9 +106,11 @@ def test_to_tool_spec_optional_param():
     assert schema["properties"]["opt"]["anyOf"]
     assert "required" not in schema or "opt" not in schema.get("required", [])
 
+
 def test_to_tool_spec_no_docstring():
     with pytest.raises(ValueError):
         to_tool_spec(func_no_docstring)
+
 
 def test_to_openai_tool_format_properties():
     tool_spec = to_tool_spec(func_simple)
@@ -112,6 +126,7 @@ def test_to_openai_tool_format_properties():
     assert params["required"] == ["a", "b"]
     assert params["additionalProperties"] is False
 
+
 def test_to_openai_tool_format_optional():
     tool_spec = to_tool_spec(func_optional)
     openai_schema = to_openai_tool_format(tool_spec)
@@ -120,6 +135,7 @@ def test_to_openai_tool_format_optional():
     assert params["properties"]["opt"]["type"] == "string"
     assert params["properties"]["opt"]["description"] != ""
     assert "required" not in params or "opt" not in params.get("required", [])
+
 
 def test_to_openai_tool_format_with_defaults():
     tool_spec = to_tool_spec(func_with_defaults)
@@ -132,6 +148,7 @@ def test_to_openai_tool_format_with_defaults():
     assert params["properties"]["x"]["description"] != ""
     assert params["properties"]["y"]["description"] != ""
     assert params["required"] == []
+
 
 def test_to_openai_tool_format_list_and_dict():
     tool_spec = to_tool_spec(func_list_param)

@@ -1,8 +1,9 @@
-from dataclasses import dataclass
-from typing import Any, Dict, Optional, Type, Callable, get_type_hints
-from pydantic import BaseModel, create_model, Field
 import inspect
+from dataclasses import dataclass
+from typing import Any, Callable, Dict, Optional, Type, get_type_hints
+
 from griffe import Docstring, DocstringSectionKind
+from pydantic import BaseModel, Field, create_model
 
 
 @dataclass
@@ -11,12 +12,14 @@ class ToolSpec:
     description: str  # Required field
     args_schema: Optional[Type[BaseModel]] = None  # Optional field
 
+
 ##
-# _detect_docstring_style is copied from 
+# _detect_docstring_style is copied from
 # https://github.com/openai/openai-agents-python/blob/main/src/agents/function_schema.py
 ##
 def _detect_docstring_style(doc: str) -> str:
     import re
+
     scores = {"sphinx": 0, "numpy": 0, "google": 0}
     sphinx_patterns = [r"^:param\s", r"^:type\s", r"^:return:", r"^:rtype:"]
     for pattern in sphinx_patterns:
@@ -63,7 +66,9 @@ def to_tool_spec(func: Callable) -> ToolSpec:
 
     doc = inspect.getdoc(func)
     if not doc or not doc.strip():
-        raise ValueError(f"Function '{name}' must have a non-empty docstring for description.")
+        raise ValueError(
+            f"Function '{name}' must have a non-empty docstring for description."
+        )
 
     # Detect docstring style and parse with griffe
     style = _detect_docstring_style(doc)
@@ -72,7 +77,12 @@ def to_tool_spec(func: Callable) -> ToolSpec:
 
     # Extract summary/description
     description = next(
-        (section.value for section in parsed if section.kind == DocstringSectionKind.text), ""
+        (
+            section.value
+            for section in parsed
+            if section.kind == DocstringSectionKind.text
+        ),
+        "",
     )
     # Extract parameter descriptions
     param_desc_map = {}
@@ -112,7 +122,7 @@ def to_openai_tool_format(tool_spec: ToolSpec) -> Dict[str, Any]:
         "type": "object",
         "properties": {},
         "required": [],
-        "additionalProperties": False
+        "additionalProperties": False,
     }
 
     if tool_spec.args_schema:
@@ -124,14 +134,18 @@ def to_openai_tool_format(tool_spec: ToolSpec) -> Dict[str, Any]:
             elif "anyOf" in prop_schema:
                 # Use the first type in anyOf
                 prop_type = next(
-                    (entry["type"] for entry in prop_schema["anyOf"] if "type" in entry),
-                    "string"
+                    (
+                        entry["type"]
+                        for entry in prop_schema["anyOf"]
+                        if "type" in entry
+                    ),
+                    "string",
                 )
             else:
                 prop_type = "string"
             parameters["properties"][prop] = {
                 "type": prop_type,
-                "description": prop_schema.get("description", "")
+                "description": prop_schema.get("description", ""),
             }
             if "enum" in prop_schema:
                 parameters["properties"][prop]["enum"] = prop_schema["enum"]
@@ -145,6 +159,6 @@ def to_openai_tool_format(tool_spec: ToolSpec) -> Dict[str, Any]:
             "name": tool_spec.name,
             "description": tool_spec.description,
             "parameters": parameters,
-            "strict": True
-        }
+            "strict": True,
+        },
     }
