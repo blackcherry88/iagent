@@ -10,6 +10,7 @@ build/
 *.egg-info/
 *.egg
 MANIFEST
+_proc
 
 # Poetry
 poetry.lock

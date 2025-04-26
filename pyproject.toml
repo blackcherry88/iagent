@@ -8,9 +8,9 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "pydantic (>=2.0)",
-    "griffe (>=1.7.2,<2.0.0)"
+    "griffe (>=1.7.2,<2.0.0)",
+    "nbdev (>=2.4.2,<3.0.0)"
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

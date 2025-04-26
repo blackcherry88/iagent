@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "iagent"
+  site-url: "https://blackcherry88.github.io/iagent/"
+  description: "IAgent is multi-agent library, not a framework. It aims to provide primitives to enable you build agent applications, than locking you in a specific framework"
+  repo-branch: main
+  repo-url: "https://github.com/blackcherry88/iagent/"
