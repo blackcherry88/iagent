@@ -8,16 +8,16 @@
 If you are new to using `nbdev` here are some useful pointers to get you
 started.
 
-### Install {{lib_path}} in Development mode
+### Install src/iagent in Development mode
 
 ``` sh
-# make sure {{lib_path}} package is installed in development mode
+# make sure src/iagent package is installed in development mode
 $ pip install -e .
 
 # make changes under nbs/ directory
 # ...
 
-# compile to have changes apply to {{lib_path}}
+# compile to have changes apply to src/iagent
 $ nbdev_prepare
 ```
 
@@ -28,27 +28,26 @@ $ nbdev_prepare
 Install latest from the GitHub [repository](%7B%7Bgit_url%7D%7D):
 
 ``` sh
-$ pip install git+https://github.com/{{user}}/{{lib_name}}.git
+$ pip install git+https://github.com/blackcherry88/iagent.git
 ```
 
-or from
-[conda](https://anaconda.org/%7B%7Buser%7D%7D/%7B%7Blib_name%7D%7D)
+or from [conda](https://anaconda.org/blackcherry88/%7B%7Blib_name%7D%7D)
 
 ``` sh
-$ conda install -c {{user}} {{lib_path}}
+$ conda install -c blackcherry88 src/iagent
 ```
 
 or from [pypi](https://pypi.org/project/%7B%7Blib_name%7D%7D/)
 
 ``` sh
-$ pip install {{lib_path}}
+$ pip install src/iagent
 ```
 
 ### Documentation
 
 Documentation can be found hosted on this GitHub
 [repository](%7B%7Bgit_url%7D%7D)’s
-[pages](https://%7B%7Buser%7D%7D.github.io/%7B%7Blib_name%7D%7D/).
+[pages](https://blackcherry88.github.io/%7B%7Blib_name%7D%7D/).
 Additionally you can find package manager specific guidelines on
-[conda](https://anaconda.org/%7B%7Buser%7D%7D/%7B%7Blib_name%7D%7D) and
+[conda](https://anaconda.org/blackcherry88/%7B%7Blib_name%7D%7D) and
 [pypi](https://pypi.org/project/%7B%7Blib_name%7D%7D/) respectively.
