@@ -9,86 +9,132 @@ d = {
         "lib_path": "src/iagent",
     },
     "syms": {
+        "iagent.ai.imp.openai": {
+            "iagent.ai.imp.openai.OpenAI": (
+                "ai.imp.openai.html#openai",
+                "iagent/ai/imp/openai.py",
+            ),
+            "iagent.ai.imp.openai.OpenAI.__init__": (
+                "ai.imp.openai.html#openai.__init__",
+                "iagent/ai/imp/openai.py",
+            ),
+            "iagent.ai.imp.openai.OpenAI.chat": (
+                "ai.imp.openai.html#openai.chat",
+                "iagent/ai/imp/openai.py",
+            ),
+        },
         "iagent.ai.messages": {
             "iagent.ai.messages.Annotation": (
-                "ai.types.html#annotation",
+                "ai.messages.html#annotation",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.AnnotationURLCitation": (
-                "ai.types.html#annotationurlcitation",
+                "ai.messages.html#annotationurlcitation",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.AssistantAudio": (
-                "ai.types.html#assistantaudio",
+                "ai.messages.html#assistantaudio",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.AssistantMessage": (
-                "ai.types.html#assistantmessage",
-                "iagent/ai/messages.py",
-            ),
-            "iagent.ai.messages.ChatCompletionMessage": (
-                "ai.types.html#chatcompletionmessage",
-                "iagent/ai/messages.py",
-            ),
-            "iagent.ai.messages.Choice": (
-                "ai.types.html#choice",
-                "iagent/ai/messages.py",
-            ),
-            "iagent.ai.messages.CompletionUsage": (
-                "ai.types.html#completionusage",
+                "ai.messages.html#assistantmessage",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.Function": (
-                "ai.types.html#function",
+                "ai.messages.html#function",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.HistoryMessage": (
+                "ai.messages.html#historymessage",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.HistoryMessage.__init__": (
+                "ai.messages.html#historymessage.__init__",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.HistoryMessage.addMessage": (
+                "ai.messages.html#historymessage.addmessage",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.HistoryMessage.from_json": (
+                "ai.messages.html#historymessage.from_json",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.HistoryMessage.to_dict": (
+                "ai.messages.html#historymessage.to_dict",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.HistoryMessage.to_json": (
+                "ai.messages.html#historymessage.to_json",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.ImageURL": (
-                "ai.types.html#imageurl",
+                "ai.messages.html#imageurl",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.InputAudio": (
-                "ai.types.html#inputaudio",
+                "ai.messages.html#inputaudio",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.PartImage": (
-                "ai.types.html#partimage",
+                "ai.messages.html#partimage",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.PartInputAudio": (
-                "ai.types.html#partinputaudio",
+                "ai.messages.html#partinputaudio",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.PartText": (
-                "ai.types.html#parttext",
+                "ai.messages.html#parttext",
                 "iagent/ai/messages.py",
             ),
-            "iagent.ai.messages.ToolCallMessage": (
-                "ai.types.html#toolcallmessage",
+            "iagent.ai.messages.ToolCall": (
+                "ai.messages.html#toolcall",
+                "iagent/ai/messages.py",
+            ),
+            "iagent.ai.messages.ToolResponseMessage": (
+                "ai.messages.html#toolresponsemessage",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.UserMessage": (
-                "ai.types.html#usermessage",
+                "ai.messages.html#usermessage",
                 "iagent/ai/messages.py",
             ),
             "iagent.ai.messages.UserMessage.addPart": (
-                "ai.types.html#usermessage.addpart",
+                "ai.messages.html#usermessage.addpart",
                 "iagent/ai/messages.py",
             ),
         },
-        "iagent.ai.service": {},
-        "iagent.core.env": {
-            "iagent.core.env.BaseEnv": ("core.env.html#baseenv", "iagent/core/env.py"),
-            "iagent.core.env.BaseEnv.__init__": (
-                "core.env.html#baseenv.__init__",
-                "iagent/core/env.py",
+        "iagent.ai.responses": {
+            "iagent.ai.responses.ChatCompletionResponse": (
+                "ai.responses.html#chatcompletionresponse",
+                "iagent/ai/responses.py",
             ),
-            "iagent.core.env.BaseEnv.get_llm": (
-                "core.env.html#baseenv.get_llm",
-                "iagent/core/env.py",
+            "iagent.ai.responses.Choice": (
+                "ai.responses.html#choice",
+                "iagent/ai/responses.py",
             ),
-            "iagent.core.env.BaseEnv.register_llm": (
-                "core.env.html#baseenv.register_llm",
-                "iagent/core/env.py",
+            "iagent.ai.responses.CompletionUsage": (
+                "ai.responses.html#completionusage",
+                "iagent/ai/responses.py",
+            ),
+        },
+        "iagent.ai.service": {
+            "iagent.ai.service.ChatClientBase": (
+                "ai.service.html#chatclientbase",
+                "iagent/ai/service.py",
+            ),
+            "iagent.ai.service.ChatClientBase.__init__": (
+                "ai.service.html#chatclientbase.__init__",
+                "iagent/ai/service.py",
+            ),
+            "iagent.ai.service.ChatClientBase.chat": (
+                "ai.service.html#chatclientbase.chat",
+                "iagent/ai/service.py",
+            ),
+            "iagent.ai.service.ChatSettings": (
+                "ai.service.html#chatsettings",
+                "iagent/ai/service.py",
             ),
         },
         "iagent.core.funtion": {
