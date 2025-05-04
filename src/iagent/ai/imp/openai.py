@@ -5,16 +5,33 @@
 # %% auto 0
 __all__ = ["OpenAI"]
 
+# %% ../../../../nbs/003_ai.imp.openai.ipynb 4
+import httpx
 import openai
 
-# %% ../../../../nbs/003_ai.imp.openai.ipynb 4
 from ..messages import HistoryMessage
 from ..responses import ChatCompletionResponse
 from ..service import ChatClientBase, ChatSettings
 
 
 class OpenAI(ChatClientBase):
-    def __init__(self, client: openai.OpenAI, settings: ChatSettings = None):
+    def __init__(
+        self,
+        *,
+        api_key: str | None = None,
+        organization: str | None = None,
+        project: str | None = None,
+        base_url: str | httpx.URL | None = None,
+        client: openai.OpenAI = None,
+        settings: ChatSettings = None,
+    ):
+        if client is None:
+            client = openai.OpenAI(
+                api_key=api_key,
+                organization=organization,
+                project=project,
+                base_url=base_url,
+            )
         self.client = client
         self.settings = settings
 
@@ -34,7 +51,6 @@ class OpenAI(ChatClientBase):
                 top_p=setting.top_p,
                 frequency_penalty=setting.frequency_penalty,
                 presence_penalty=setting.presence_penalty,
-                stop=setting.stop,
             )
         else:
             return self.client.chat.completions.create(
